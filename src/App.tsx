@@ -27,7 +27,7 @@ import '@aws-amplify/ui-react/styles.css'
 
 Amplify.configure(config)
 
-const App: FC<{ signOut: any }> = ({ signOut }) => {
+const App: FC<{ signOut?: any }> = ({ signOut }) => {
   // const mode = useAppSelector(selectMode)
 
   return (
