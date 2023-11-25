@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Bantayog';
+  src: url('Bantayog-Regular.otf') format('opentype'),
+    url('Bantayog-Regular.otf.woff2') format('woff2'),
+    url('Bantayog-Regular.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Bantayog';
+  src: local('Bantayog-Light'), local('BlenderPro-Thin'),
+      url('Bantayog-Light.otf') format('opentype'),
+      url('Bantayog-Light.woff2') format('woff2'),
+      url('Bantayog-Light.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bantayog';
+  src: url('Bantayog-Semilight.otf') format('opentype'),
+      url('Bantayog-Semilight.woff2') format('woff2'),
+      url('Bantayog-Semilight.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
