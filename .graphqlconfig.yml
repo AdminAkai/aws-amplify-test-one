@@ -1,0 +1,19 @@
+projects:
+  awsamplifytestone:
+    schemaPath: amplify/backend/api/awsamplifytestone/build/schema.graphql
+    includes:
+      - src/shared/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+      - src/shared/graphql/API.ts
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/shared/graphql/API.ts
+        docsFilePath: src/shared/graphql
+        region: us-east-1
+        apiId: null
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

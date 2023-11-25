@@ -1,4 +1,11 @@
 export type AmplifyDependentResourcesAttributes = {
+  api: {
+    awsamplifytestone: {
+      GraphQLAPIEndpointOutput: 'string'
+      GraphQLAPIIdOutput: 'string'
+      GraphQLAPIKeyOutput: 'string'
+    }
+  }
   auth: {
     awsamplifytestonedf918269: {
       AppClientID: 'string'
