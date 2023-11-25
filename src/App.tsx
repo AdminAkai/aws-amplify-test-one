@@ -13,13 +13,13 @@ import { generateClient } from 'aws-amplify/api'
 
 import { listNotes } from './shared/graphql/queries'
 import { Note } from './shared/graphql/API'
+import { createNote, deleteNote } from './shared/graphql/mutations'
 
 import config from './aws-exports'
 
 import './assets/fonts/stylesheet.css'
 import './App.css'
 import '@aws-amplify/ui-react/styles.css'
-import { createNote, deleteNote } from './shared/graphql/mutations'
 
 Amplify.configure(config)
 
