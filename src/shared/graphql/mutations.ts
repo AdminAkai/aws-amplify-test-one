@@ -16,6 +16,7 @@ export const createNote = /* GraphQL */ `mutation CreateNote(
     id
     name
     description
+    image
     createdAt
     updatedAt
     __typename
@@ -33,6 +34,7 @@ export const updateNote = /* GraphQL */ `mutation UpdateNote(
     id
     name
     description
+    image
     createdAt
     updatedAt
     __typename
@@ -50,6 +52,7 @@ export const deleteNote = /* GraphQL */ `mutation DeleteNote(
     id
     name
     description
+    image
     createdAt
     updatedAt
     __typename

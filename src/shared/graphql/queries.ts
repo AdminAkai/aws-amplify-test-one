@@ -13,6 +13,7 @@ export const getNote = /* GraphQL */ `query GetNote($id: ID!) {
     id
     name
     description
+    image
     createdAt
     updatedAt
     __typename
@@ -29,6 +30,7 @@ export const listNotes = /* GraphQL */ `query ListNotes(
       id
       name
       description
+      image
       createdAt
       updatedAt
       __typename

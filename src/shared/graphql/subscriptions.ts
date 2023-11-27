@@ -14,6 +14,7 @@ export const onCreateNote =
     id
     name
     description
+    image
     createdAt
     updatedAt
     __typename
@@ -29,6 +30,7 @@ export const onUpdateNote =
     id
     name
     description
+    image
     createdAt
     updatedAt
     __typename
@@ -44,6 +46,7 @@ export const onDeleteNote =
     id
     name
     description
+    image
     createdAt
     updatedAt
     __typename

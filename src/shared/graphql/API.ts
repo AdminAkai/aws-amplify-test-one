@@ -6,11 +6,13 @@ export type CreateNoteInput = {
   id?: string | null
   name: string
   description?: string | null
+  image?: string | null
 }
 
 export type ModelNoteConditionInput = {
   name?: ModelStringInput | null
   description?: ModelStringInput | null
+  image?: ModelStringInput | null
   and?: Array<ModelNoteConditionInput | null> | null
   or?: Array<ModelNoteConditionInput | null> | null
   not?: ModelNoteConditionInput | null
@@ -60,6 +62,7 @@ export type Note = {
   id: string
   name: string
   description?: string | null
+  image?: string | null
   createdAt: string
   updatedAt: string
 }
@@ -68,6 +71,7 @@ export type UpdateNoteInput = {
   id: string
   name?: string | null
   description?: string | null
+  image?: string | null
 }
 
 export type DeleteNoteInput = {
@@ -78,6 +82,7 @@ export type ModelNoteFilterInput = {
   id?: ModelIDInput | null
   name?: ModelStringInput | null
   description?: ModelStringInput | null
+  image?: ModelStringInput | null
   and?: Array<ModelNoteFilterInput | null> | null
   or?: Array<ModelNoteFilterInput | null> | null
   not?: ModelNoteFilterInput | null
@@ -109,6 +114,7 @@ export type ModelSubscriptionNoteFilterInput = {
   id?: ModelSubscriptionIDInput | null
   name?: ModelSubscriptionStringInput | null
   description?: ModelSubscriptionStringInput | null
+  image?: ModelSubscriptionStringInput | null
   and?: Array<ModelSubscriptionNoteFilterInput | null> | null
   or?: Array<ModelSubscriptionNoteFilterInput | null> | null
 }
@@ -154,6 +160,7 @@ export type CreateNoteMutation = {
     id: string
     name: string
     description?: string | null
+    image?: string | null
     createdAt: string
     updatedAt: string
   } | null
@@ -170,6 +177,7 @@ export type UpdateNoteMutation = {
     id: string
     name: string
     description?: string | null
+    image?: string | null
     createdAt: string
     updatedAt: string
   } | null
@@ -186,6 +194,7 @@ export type DeleteNoteMutation = {
     id: string
     name: string
     description?: string | null
+    image?: string | null
     createdAt: string
     updatedAt: string
   } | null
@@ -201,6 +210,7 @@ export type GetNoteQuery = {
     id: string
     name: string
     description?: string | null
+    image?: string | null
     createdAt: string
     updatedAt: string
   } | null
@@ -220,6 +230,7 @@ export type ListNotesQuery = {
       id: string
       name: string
       description?: string | null
+      image?: string | null
       createdAt: string
       updatedAt: string
     } | null>
@@ -237,6 +248,7 @@ export type OnCreateNoteSubscription = {
     id: string
     name: string
     description?: string | null
+    image?: string | null
     createdAt: string
     updatedAt: string
   } | null
@@ -252,6 +264,7 @@ export type OnUpdateNoteSubscription = {
     id: string
     name: string
     description?: string | null
+    image?: string | null
     createdAt: string
     updatedAt: string
   } | null
@@ -267,6 +280,7 @@ export type OnDeleteNoteSubscription = {
     id: string
     name: string
     description?: string | null
+    image?: string | null
     createdAt: string
     updatedAt: string
   } | null

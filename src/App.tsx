@@ -1,14 +1,16 @@
 import { FC, FormEvent, useEffect, useState } from 'react'
 import {
-  withAuthenticator,
   Button,
-  Heading,
-  View,
   Flex,
-  TextField,
+  Heading,
+  Image,
   Text,
+  TextField,
+  View,
+  withAuthenticator,
 } from '@aws-amplify/ui-react'
 import { Amplify } from 'aws-amplify'
+import { uploadData, getUrl, remove } from 'aws-amplify/storage'
 import { generateClient } from 'aws-amplify/api'
 
 import { listNotes } from './shared/graphql/queries'
@@ -34,28 +36,57 @@ const App: FC<{ signOut?: any }> = ({ signOut }) => {
 
   const fetchNotes = async () => {
     const apiData = await client.graphql({ query: listNotes })
-    const notesFromAPI = apiData.data.listNotes.items
-    setNotes(notesFromAPI)
+    const notesFromAPI = apiData?.data?.listNotes?.items || []
+    const notesWithImages = await Promise.all(
+      notesFromAPI.map(async (note) => {
+        if (note.image) {
+          const imgUrl = await getUrl({ key: note.image })
+          note.image = imgUrl.url.href
+        }
+        return note
+      })
+    )
+    setNotes(notesWithImages)
   }
 
   const createNoteMutation = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = new FormData(e.currentTarget)
-    const data = {
-      name: form.get('name') as string,
-      description: form.get('description') as string,
+    const name = form.get('name') as string
+    const description = form.get('description') as string
+    const img = form.get('image')
+    if (img) {
+      await uploadData({
+        key: name,
+        data: img,
+        options: {
+          accessLevel: 'guest',
+        },
+      }).result
+      const data = {
+        name,
+        description,
+        image: name,
+      }
+      await client.graphql({
+        query: createNote,
+        variables: { input: data },
+      })
+      fetchNotes()
+      e.currentTarget.reset()
     }
-    await client.graphql({
-      query: createNote,
-      variables: { input: data },
-    })
-    fetchNotes()
-    e.currentTarget.reset()
   }
 
-  const deleteNoteMutation = async ({ id }: { id: string }) => {
+  const deleteNoteMutation = async ({
+    id,
+    name,
+  }: {
+    id: string
+    name: string
+  }) => {
     const newNotes = notes.filter((note) => note.id !== id)
     setNotes(newNotes)
+    await remove({ key: name })
     await client.graphql({
       query: deleteNote,
       variables: { input: { id } },
@@ -83,6 +114,12 @@ const App: FC<{ signOut?: any }> = ({ signOut }) => {
             variation='quiet'
             required
           />
+          <View
+            name='image'
+            as='input'
+            type='file'
+            style={{ alignSelf: 'end' }}
+          />
           <Button type='submit' variation='primary'>
             Create Note
           </Button>
@@ -101,6 +138,13 @@ const App: FC<{ signOut?: any }> = ({ signOut }) => {
               {note.name}
             </Text>
             <Text as='span'>{note.description}</Text>
+            {note.image && (
+              <Image
+                src={note.image}
+                alt={`visual aid for ${note.image}`}
+                style={{ width: 400 }}
+              />
+            )}
             <Button variation='link' onClick={() => deleteNoteMutation(note)}>
               Delete note
             </Button>

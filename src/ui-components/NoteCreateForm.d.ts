@@ -27,10 +27,12 @@ export declare type ValidationFunction<T> = (
 export declare type NoteCreateFormInputValues = {
   name?: string
   description?: string
+  image?: string
 }
 export declare type NoteCreateFormValidationValues = {
   name?: ValidationFunction<string>
   description?: ValidationFunction<string>
+  image?: ValidationFunction<string>
 }
 export declare type PrimitiveOverrideProps<T> = Partial<T> &
   React.DOMAttributes<HTMLDivElement>
@@ -38,6 +40,7 @@ export declare type NoteCreateFormOverridesProps = {
   NoteCreateFormGrid?: PrimitiveOverrideProps<GridProps>
   name?: PrimitiveOverrideProps<TextFieldProps>
   description?: PrimitiveOverrideProps<TextFieldProps>
+  image?: PrimitiveOverrideProps<TextFieldProps>
 } & EscapeHatchProps
 export declare type NoteCreateFormProps = React.PropsWithChildren<
   {
