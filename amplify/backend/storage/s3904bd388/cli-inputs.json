@@ -4,10 +4,6 @@
   "bucketName": "awsamplifytestoneb2d1f53be41445e4b5d8895c31c9e5",
   "storageAccess": "auth",
   "guestAccess": [],
-  "authAccess": [
-    "CREATE_AND_UPDATE",
-    "READ",
-    "DELETE"
-  ],
+  "authAccess": ["CREATE_AND_UPDATE", "READ", "DELETE"],
   "groupAccess": {}
 }
